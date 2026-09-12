@@ -5,6 +5,7 @@ import * as de from './languages/de.json';
 import * as ru from './languages/ru.json';
 import * as zh from './languages/zh.json';
 import * as pl from './languages/pl.json';
+import * as fr from './languages/ptbr.json';
 import * as es from './languages/es.json';
 import * as fr from './languages/fr.json';
 import { globalData } from '../helpers/globals';
@@ -17,6 +18,7 @@ const languages: any = {
   ru: ru,
   zh: zh,
   pl: pl,
+  ptbr: ptbr,
   es: es,
   fr: fr,
 };
