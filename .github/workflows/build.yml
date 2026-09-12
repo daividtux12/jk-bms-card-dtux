@@ -1,0 +1,36 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main # Altere para 'master' se a sua branch principal for essa
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Ajuste a versão do Node.js se necessário
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      # Opcional: Se você quiser que o GitHub Actions envie o arquivo compilado de volta para o repositório automaticamente
+      - name: Commit and push built files
+        if: github.event_name == 'push'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: auto-generate build files [skip ci]"
+          file_pattern: "dist/*" # Altere para o caminho onde o seu arquivo compilado é gerado (ex: dist/jk-bms-card.js)
